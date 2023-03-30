@@ -2,7 +2,15 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
+class PublicadosManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status='publicado')
+
+
 class Post(models.Model):
+    objects = models.Manager()
+    publicados = PublicadosManager()
+
     STATUS_CHOICES = (
         ('rascunho', 'Rascunho'),
         ('publicado', 'Publicado')
@@ -23,4 +31,3 @@ class Post(models.Model):
 
     def __str__(self):
         return self.titulo
-

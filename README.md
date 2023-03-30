@@ -1,6 +1,6 @@
 # Blog
 
-## Passo a passo
+## 2023-03-29
 
 Instalar dependências e iniciar.
 
@@ -44,3 +44,12 @@ posts = Post.objects.first()
 post = Post.objects.get(titulo='Post no shell')
 posts = Post.objects.filter(status='rascunho')
 ```
+
+Criar gerenciador `models.Manager` em `models.py`
+
+Criar `views.py`
+
+Criar `listarposts.html`
+
+Ajustar `urls.py`
+
