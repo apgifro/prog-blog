@@ -12,3 +12,9 @@ django-admin startproject blog .
 Configurar `settings.py`.
 
 Configurar `urls.py`.
+
+Criar `models.py`.
+
+```
+python manage.py makemigrations
+```
