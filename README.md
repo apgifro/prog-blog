@@ -2,7 +2,7 @@
 
 ## Passo a passo
 
-Instalar dependências.
+Instalar dependências e iniciar.
 
 ```
 pip install django==4.2rc1
@@ -17,4 +17,11 @@ Criar `models.py`.
 
 ```
 python manage.py makemigrations
+python manage.py migrate
 ```
+
+```
+python manage.py createsuperuser
+```
+
+Criar `admin.py`.
