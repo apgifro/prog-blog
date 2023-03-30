@@ -53,3 +53,7 @@ Criar `listarposts.html`
 
 Ajustar `urls.py`
 
+![screen1](/readme/blog.png)
+
+
+
