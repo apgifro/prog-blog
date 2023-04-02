@@ -1,5 +1,13 @@
 # Blog
 
+## 2023-04-01
+
+Adicionar herança de template.
+
+![screen](/readme/posts_view.png)
+
+![screen](/readme/post_detail.png)
+
 ## 2023-03-29
 
 Instalar dependências e iniciar.

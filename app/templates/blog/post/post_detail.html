@@ -1,0 +1,34 @@
+{% extends 'blog/base/base.html' %}
+{% load static %}
+
+{% block conteudo %}
+
+<section data-bs-version="5.1" class="features16 cid-tzVjbxlXj9" id="features17-6">
+
+    <div class="container">
+        <div class="content-wrapper">
+            <div class="row align-items-center">
+                <div class="col-12 col-lg-5">
+                    <div class="image-wrapper">
+                        <img src="{% static 'assets/images/sq1.jpg' %}" alt="Mobirise Website Builder">
+                    </div>
+                </div>
+                <div class="col-12 col-lg">
+                    <div class="text-wrapper">
+                        <h6 class="card-title mbr-fonts-style display-5">
+                            {{ item.titulo }} </br> <i> Escrito por {{ item.autor }}. </i>
+                        </h6>
+                        <p class="mbr-text mbr-fonts-style mb-4 display-4">
+                            {{ item.corpo }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<script>document.getElementById("change_text").textContent="Confira o artigo na íntegra!";</script>
+
+{% endblock %}

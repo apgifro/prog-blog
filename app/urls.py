@@ -1,6 +1,8 @@
 from django.urls import path
-from .views import ListarPostsListView
+
+from .views import Index, PostView
 
 urlpatterns = [
-    path('', ListarPostsListView.as_view(), name='home'),
+    path('', Index.as_view(), name='home'),
+    path('post/<slug:slug>/', PostView.as_view(), name='post'),
 ]
