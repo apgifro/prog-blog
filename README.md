@@ -2,11 +2,50 @@
 
 ## 2023-04-05
 
-Alterações da aula
+Paginação
 
 ![screen](/readme/2023-04-0501.png)
+
 ![screen](/readme/2023-04-0502.png)
+
 ![screen](/readme/2023-04-0503.png)
+
+
+Truncate
+
+```
+{{ item.corpo|truncatewords:30|linebreaks }}
+```
+
+Como fazer paginação?
+
+Adicionar na view
+
+```
+paginate_by = 3
+```
+
+Criar HTML de paginação
+```
+<span>
+    {% if page.has_previous %}
+      <a href="?page={{ page.previous_page_number }}">&#9664;</a>
+    {% endif %}
+    
+    <span>
+      Página {{ page.number }} de {{ page.paginator.num_pages }}
+    </span>
+    
+    {% if page.has_next %}
+      <a href="?page={{ page.next_page_number }}">&#9654;</a>
+    {% endif %}
+</span>
+```
+
+Incluir HTML na página e pronto!
+```
+{% include 'blog/base/paginacao.html' with page=page_obj %}
+```
 
 ## 2023-04-01
 
