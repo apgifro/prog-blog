@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12 col-lg-10">
+            <div class="mbr-section-btn align-center">
+              <span class="display-4">
+                {% if page.has_previous %}
+                  <a href="?page={{ page.previous_page_number }}">&#9664;</a>
+                {% endif %}
+                <span>
+                  Página {{ page.number }} de {{ page.paginator.num_pages }}
+                </span>
+                {% if page.has_next %}
+                  <a href="?page={{ page.next_page_number }}">&#9654;</a>
+                {% endif %}
+              </span>
+
+            </div>
+        </div>
+    </div>
+</div>

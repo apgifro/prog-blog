@@ -1,5 +1,8 @@
 {% load static %}
 
+<br>
+{% include 'blog/base/paginacao.html' with page=page_obj %}
+<br>
 
 {% for item in posts %}
 
@@ -9,12 +12,12 @@
         <div class="row justify-content-center">
             <div class="col-12 col-md">
                 <h6 class="mbr-section-subtitle mbr-fonts-style mb-4 display-5">
-                    {{ item.titulo }} </br> <i> Escrito por {{ item.autor }}. </i>
+                    {{ item.titulo }}
                 </h6>
             </div>
 
             <div class="col-md-12 col-lg-6">
-                <p class="mbr-text mbr-fonts-style display-7">{{ item.corpo }}</p>
+                <p class="mbr-text mbr-fonts-style display-7">{{ item.corpo|truncatewords:30|linebreaks }}</p>
             </div>
         </div>
     </div>
@@ -29,6 +32,11 @@
             </div>
         </div>
     </div>
+    <hr>
 </section>
 
 {% endfor %}
+
+
+
+

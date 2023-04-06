@@ -8,6 +8,7 @@ class Index(ListView):
     context_object_name = 'posts'
     template_name = 'blog/index.html'
     queryset = Post.publicados.all()
+    paginate_by = 3
 
 
 class PostView(TemplateView):
