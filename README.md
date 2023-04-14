@@ -1,5 +1,90 @@
 # Blog
 
+## 2023-04-12
+
+Compartilhar post por e-mail.
+
+![screen](/readme/2023-04-12.png)
+
+![screen](/readme/2023-04-12.2.png)
+
+forms.py
+```
+class EmailPost(forms.Form):
+    nome = forms.CharField(max_length=100)
+    email = forms.EmailField()
+    destino = forms.EmailField()
+    coments = forms.CharField(required=False,
+                              widget=forms.Textarea)
+
+    def enviar_email(self, post):
+        nome = self.cleaned_data['nome']
+        email = self.cleaned_data['email']
+        destino = self.cleaned_data['destino']
+        coments = self.cleaned_data['coments']
+
+        conteudo = f'Recomendo ler o post: {post.titulo}\n' \
+                   f'Comentários: {coments}'
+        mail = EmailMessage(
+            subject=f"{nome} recomenda este post!",
+            body=conteudo,
+            from_email='contato@meublog.com.br',
+            to=[destino],
+            headers={'Reply-To': email}
+        )
+        mail.send()
+```
+
+urls.py
+```
+path('share/<int:pk>/', FormContactView.as_view(), name='share'),
+```
+
+views.py
+```
+class FormContactView(FormView):
+    template_name = 'blog/post/share.html'
+    form_class = EmailPost
+    success_url = reverse_lazy('home')
+    meupost = Post()
+
+    def get_post(self, id_post):
+        try:
+            return Post.publicados.get(pk=id_post)
+        except Post.DoesNotExist:
+            messages.error(self.request, 'O post não existe!')
+            reverse_lazy('home')
+
+    def get_context_data(self, **kwargs):
+        context = super(FormContactView, self).get_context_data(**kwargs)
+        context['post'] = self.get_post(self.kwargs['pk'])
+        return context
+
+    def form_valid(self, form, *args, **kwargs):
+        meupost = self.get_context_data()['post']
+        form.enviar_email(meupost)
+        messages.success(self.request, f'Post: {meupost.titulo}'
+                                       f'enviado com sucesso.')
+        return super(FormContactView, self).form_valid(form, *args, **kwargs)
+
+    def form_invalid(self, form, *args, **kwargs):
+        meupost = self.get_context_data()['post']
+        messages.error(self.request, f'Post: {meupost.titulo}'
+                                       f'não enviado.')
+        return super(FormContactView, self).form_valid(form, *args, **kwargs)
+```
+
+Criar share.html
+
+Adicionar em detail.html
+```
+<p>
+    <a href="{% url 'share' detail.id %}">
+    Compartilhar por e-mail...
+    </a>
+</p>
+```
+
 ## 2023-04-05
 
 Paginação

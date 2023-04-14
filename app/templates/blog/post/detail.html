@@ -10,24 +10,28 @@
             <div class="row align-items-center">
                 <div class="col-12 col-lg-5">
                     <div class="image-wrapper">
-                        <img src="{{ item.imagem.thumb.url }}" alt="Mobirise Website Builder">
+                        <img src="{{ detail.imagem.thumb.url }}" alt="Mobirise Website Builder">
                     </div>
                 </div>
                 <div class="col-12 col-lg">
                     <div class="text-wrapper">
+                        <p>
+                            <a href="{% url 'share' detail.id %}">
+                            Compartilhar por e-mail...
+                            </a>
+                        </p>
                         <h6 class="card-title mbr-fonts-style display-5">
-                            {{ item.titulo }}
+                            {{ detail.titulo }}
                         </h6>
                         <p class="mbr-text mbr-fonts-style mb-4 display-4">
-                            <p> Escrito por {{ item.autor }}. </p>
-                            {{ item.corpo }}
+                            <p> Escrito por {{ detail.autor }}. </p>
+                            {{ detail.corpo }}
                         </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </section>
 
 <script>document.getElementById("change_text").textContent="Confira o artigo na íntegra!";</script>

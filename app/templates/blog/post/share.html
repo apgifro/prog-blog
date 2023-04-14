@@ -1,0 +1,54 @@
+{% extends 'blog/base/base.html' %}
+{% load static %}
+
+
+{% block conteudo %}
+<section class="form6 cid-sunxTcEbC6" id="form6-q">
+
+
+    <div class="container">
+        <br>
+        <div class="mbr-section-head">
+            <p class="align-center">
+                Enviar post por e-mail.
+            </p>
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                <strong>{{ post.titulo }}</strong></h3>
+        </div>
+
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-8 mx-auto mbr-form">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="dragArea row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                            <input type="text" name="nome" placeholder="Nome" class="form-control" value="" id="name-form6-q">
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                            <input type="email" name="email" placeholder="Seu e-mail" class="form-control" value="" id="email-form6-q">
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                            <input type="tel" name="destino" placeholder="Enviar para o e-mail..." class="form-control" value="" id="phone-form6-q">
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                            <textarea placeholder="Mensagem" name="coments" data-form-field="mensagem" class="form-control" value="" id="mensagem-form6-q"></textarea>
+                        </div>
+
+                        <div class="col-auto mbr-section-btn align-center">
+                            <button type="submit" class="btn btn-primary display-4">Enviar</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>document.getElementById("change_text").textContent="Compartilhar.";</script>
+
+{% endblock %}

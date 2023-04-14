@@ -1,7 +1,7 @@
 {% load static %}
 
 <br>
-{% include 'blog/base/paginacao.html' with page=page_obj %}
+{% include 'blog/base/pages.html' with page=page_obj %}
 <br>
 
 {% for item in posts %}
@@ -27,7 +27,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12 col-lg-10">
-                <div class="mbr-section-btn align-center"><a class="btn btn-primary display-4" href="post/{{ item.slug }}">Ver post</a>
+                <div class="mbr-section-btn align-center"><a class="btn btn-primary display-4" href="{% url 'detail' item.slug %}">Ver post</a>
                 </div>
             </div>
         </div>
