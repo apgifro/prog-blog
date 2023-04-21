@@ -1,6 +1,6 @@
 # Blog
 
-## 2023-04-12
+## 2023-04-12 e 2023-04-19
 
 Compartilhar post por e-mail.
 
