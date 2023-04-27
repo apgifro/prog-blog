@@ -1,9 +1,10 @@
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.contrib import messages
-from django.views.generic import ListView, DetailView, FormView
+from django.views.generic import ListView, DetailView, FormView, CreateView
 
-from app.forms import EmailPost
-from app.models import Post
+from app.forms import EmailPost, ComentModelForm
+from app.models import Post, Comentario
 
 
 class Index(ListView):
@@ -17,6 +18,18 @@ class PostDetailView(DetailView):
     template_name = "blog/post/detail.html"
     context_object_name = 'detail'
     queryset = Post.publicados.all()
+
+    def _get_coments(self, id_post):
+        try:
+            coments = Comentario.objects.filter(post_id=id_post, status=True)
+            return coments
+        except Comentario.DoesNotExist:
+            return Exception
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comentarios'] = self._get_coments(self.object.id)
+        return context
 
 
 class FormContactView(FormView):
@@ -47,3 +60,29 @@ class FormContactView(FormView):
         meupost = self.get_context_data()['post']
         messages.error(self.request, f'{meupost.titulo} não enviado.')
         return super(FormContactView, self).form_valid(form, *args, **kwargs)
+
+
+class ComentarioCreateView(CreateView):
+    template_name = 'blog/post/comentarios.html'
+    form_class = ComentModelForm
+    # form_class = forms.ModelForm(model=Comentario, fields=[])
+
+    def _get_post(self, id_post):
+        try:
+            print(id_post)
+            post = Post.publicados.get(id=id_post)
+            return post
+        except Post.DoesNotExist:
+            return Exception
+
+    def form_valid(self, form, *args, **kwargs):
+        post = self._get_post(self.kwargs['pk'])
+        form.salvar_comentario(post)
+        return redirect('detail', post.slug)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['post'] = self._get_post(self.kwargs['pk'])
+        return context
+
+

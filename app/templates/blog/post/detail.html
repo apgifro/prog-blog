@@ -3,6 +3,28 @@
 
 {% block conteudo %}
 
+<div class="container">
+        <br>
+        <p class="align-center"> Escrito por {{ detail.autor }}. </p>
+        <div class="mbr-section-head">
+            <p class="align-center"></p>
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                <strong>{{ detail.titulo }}</strong>
+            </h3>
+        <br>
+        </div>
+         <p class="align-center">
+            <a href="{% url 'share' detail.id %}" class="btn btn-primary">
+            Compartilhar
+            </a>
+
+            <a href="{% url 'comentar' detail.id %}" class="btn btn-secondary">
+            Comentar
+            </a>
+        </p>
+
+</div>
+
 <section data-bs-version="5.1" class="features16 cid-tzVjbxlXj9" id="features17-6">
 
     <div class="container">
@@ -15,16 +37,7 @@
                 </div>
                 <div class="col-12 col-lg">
                     <div class="text-wrapper">
-                        <p>
-                            <a href="{% url 'share' detail.id %}">
-                            Compartilhar por e-mail...
-                            </a>
-                        </p>
-                        <h6 class="card-title mbr-fonts-style display-5">
-                            {{ detail.titulo }}
-                        </h6>
                         <p class="mbr-text mbr-fonts-style mb-4 display-4">
-                            <p> Escrito por {{ detail.autor }}. </p>
                             {{ detail.corpo }}
                         </p>
                     </div>
@@ -33,6 +46,49 @@
         </div>
     </div>
 </section>
+
+
+<div class="container">
+        <div class="mbr-section-head">
+            <p class="align-center"></p>
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                <strong>Comentários</strong></h3>
+        </div>
+</div>
+
+{% for item in comentarios %}
+
+<section data-bs-version="5.1" class="content10 cid-tzVgp39K95" id="content10-1" xmlns="http://www.w3.org/1999/html">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md">
+                <h6 class="mbr-section-subtitle mbr-fonts-style mb-4 display-5">
+                    {{ item.nome }}
+                </h6>
+            </div>
+
+            <div class="col-md-12 col-lg-6">
+                <p class="mbr-text mbr-fonts-style display-7">{{ item.texto }}</p>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    {% empty %}
+    <div class="container">
+        <br>
+        <div class="mbr-section-head">
+            <p class="align-center"></p>
+                <h4 class="align-center">
+                Nenhum comentário. Faça o primeiro!</h4>
+        </div>
+    </div>
+
+
+
+</section>
+
+{% endfor %}
 
 <script>document.getElementById("change_text").textContent="Confira o artigo na íntegra!";</script>
 
