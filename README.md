@@ -1,5 +1,21 @@
 # Blog
 
+## Datas & Recursos
+
+`2023-05-10` Adição de usuários
+
+`2023-04-26` Comentários
+
+`2023-04-12` Compartilhar post por e-mail
+
+`2023-04-19` Compartilhar post por e-mail
+
+`2023-04-05` Paginação
+
+`2023-04-01` Adicionar herança de template
+
+`2023-03-29` Instalar dependências e iniciar
+
 ## 2023-05-10
 
 ### Adição de usuários
