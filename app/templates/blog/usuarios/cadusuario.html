@@ -1,0 +1,87 @@
+{% extends 'blog/base/base.html' %}
+{% load static %}
+
+
+{% block conteudo %}
+<section class="form6 cid-sunxTcEbC6" id="form6-q">
+
+
+    <div class="container">
+        <br>
+        <div class="mbr-section-head">
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                <strong>Cadastrar usuário</strong></h3>
+        </div>
+
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-8 mx-auto mbr-form">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                        <input type="text" name="username" placeholder="Usuário" class="form-control" id="name-form6-q">
+                    </div>
+
+                    <ul>
+                        <li>
+                            Obrigatório. 150 caracteres ou menos. Letras, números e @/./+/-/_ apenas.
+                        </li>
+                    </ul>
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                        <input type="email" name="email" placeholder="Seu e-mail" class="form-control" id="email-form6-q">
+                    </div>
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                        <input type="password" name="password" placeholder="Senha" class="form-control" id="email-form6-q">
+                    </div>
+
+
+                    <ul>
+                        <li>
+                            Sua senha não pode ser muito parecida com o resto das suas informações pessoais.
+                        </li>
+
+                        <li>
+                            Sua senha precisa conter pelo menos 8 caracteres.
+                        </li>
+
+                        <li>
+                            Sua senha não pode ser uma senha comumente utilizada.
+                        </li>
+
+                        <li>
+                            Sua senha não pode ser inteiramente numérica.
+                        </li>
+                    </ul>
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                        <input type="password" name="password2" placeholder="Confirmar senha" class="form-control" id="email-form6-q">
+                    </div>
+
+                    <ul>
+                        <li>
+                            Informe a mesma senha informada anteriormente, para verificação.
+                        </li>
+                    </ul>
+
+
+
+                    <div class="col-auto mbr-section-btn align-center">
+                        <button type="submit" class="btn btn-primary display-4">Enviar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+<script>document.getElementById("change_text").textContent="Usuários.";</script>
+
+{% endblock %}

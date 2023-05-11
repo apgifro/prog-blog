@@ -49,13 +49,36 @@
 
     <div class="container">
         <div class="row">
+
+            <div class="col-12 col-lg-7">
+
+                <p id="change_text_" class="mbr-text mbr-fonts-style display-7">
+                {% if user.is_anonymous %}
+                    <a href="{% url 'cadusuario' %}" >
+                        Cadastre-se
+                    </a>
+                    |
+                    <a href="{% url 'loginuser' %}" >
+                        Login
+                    </a>
+                 {% else %}
+                    <p>
+                        Saudações, <strong>{{ user.username }}</strong>!
+                        <a href="{% url 'logoutuser' %}" >
+                                Logout
+                            </a>
+                    </p>
+
+                {% endif %}
+                </p>
+            </div>
+
             <div class="col-12 col-lg-7">
                 <h1 class="mbr-section-title mbr-fonts-style mb-3 display-1"><strong>
                     <a href="/">Blog</a>
                 </strong></h1>
 
                 <p id="change_text" class="mbr-text mbr-fonts-style display-7">Veja abaixo os últimos posts.</p>
-
             </div>
         </div>
     </div>

@@ -2,9 +2,18 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.views.generic import ListView, DetailView, FormView, CreateView
+from django.contrib.auth.views import LogoutView, LoginView
 
-from app.forms import EmailPost, ComentModelForm
+from app.forms import EmailPost, ComentModelForm, CadUsuarioForm
 from app.models import Post, Comentario
+
+from django.contrib.auth.models import User
+
+from django.contrib.auth.forms import AuthenticationForm
+
+from django.contrib.auth import authenticate, login, logout
+
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class Index(ListView):
@@ -62,7 +71,7 @@ class FormContactView(FormView):
         return super(FormContactView, self).form_valid(form, *args, **kwargs)
 
 
-class ComentarioCreateView(CreateView):
+class ComentarioCreateView(LoginRequiredMixin, CreateView):
     template_name = 'blog/post/comentarios.html'
     form_class = ComentModelForm
     # form_class = forms.ModelForm(model=Comentario, fields=[])
@@ -86,3 +95,46 @@ class ComentarioCreateView(CreateView):
         return context
 
 
+class CadUsuarioView(CreateView):
+    template_name = 'blog/usuarios/cadusuario.html'
+    form_class = CadUsuarioForm
+    success_url = reverse_lazy('loginuser')
+
+    def form_valid(self, form):
+        form.cleaned_data
+        form.save()
+        messages.success(self.request, 'Usuário cadastrado!')
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'Usuário não cadastrado.')
+        return super().form_invalid(form)
+
+
+class LoginUsuarioView(LoginView):
+    template_name = 'blog/usuarios/login.html'
+    model = User
+    form_class = AuthenticationForm
+    success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        nome = form.cleaned_data['username']
+        senha = form.cleaned_data['password']
+        usuario = authenticate(self.request, username=nome, password=senha)
+
+        if usuario is not None:
+            login(self.request, usuario)
+            return redirect('home')
+        messages.error(self.request, 'Usuário inexistente.')
+        return redirect('loginuser')
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'Não foi possível fazer login.')
+        return redirect('loginuser')
+
+
+class LogoutView(LoginRequiredMixin, LogoutView):
+
+    def get(self, request):
+        logout(request)
+        return redirect('home')

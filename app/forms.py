@@ -3,6 +3,11 @@ from django.core.mail import EmailMessage
 
 from app.models import Comentario
 
+from django.contrib.auth.forms import UserCreationForm
+
+from django.contrib.auth.models import User
+
+
 
 class EmailPost(forms.Form):
     nome = forms.CharField(max_length=100)
@@ -42,3 +47,9 @@ class ComentModelForm(forms.ModelForm):
         novo_coment.email = self.cleaned_data['email']
         novo_coment.texto = self.cleaned_data['texto']
         return novo_coment.save()
+
+class CadUsuarioForm(UserCreationForm):
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']

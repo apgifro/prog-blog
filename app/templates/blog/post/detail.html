@@ -18,8 +18,8 @@
             Compartilhar
             </a>
 
-            <a href="{% url 'comentar' detail.id %}" class="btn btn-secondary">
-            Comentar
+            <a href="#comentarios" class="btn btn-secondary">
+            Ver comentários
             </a>
         </p>
 
@@ -48,11 +48,27 @@
 </section>
 
 
-<div class="container">
+<div id="comentarios" class="container">
         <div class="mbr-section-head">
             <p class="align-center"></p>
             <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
                 <strong>Comentários</strong></h3>
+            <p class="align-center">
+                {% if user.is_authenticated %}
+
+                <a href="{% url 'comentar' detail.id %}" class="btn btn-secondary">
+                    Comentar
+                </a>
+
+                {% else %}
+
+                <a href="{% url 'loginuser' %}" class="btn btn-secondary">
+                    Faça login para comentar
+                </a>
+
+                {% endif %}
+            </p>
+
         </div>
 </div>
 
