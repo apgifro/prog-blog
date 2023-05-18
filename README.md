@@ -2,6 +2,8 @@
 
 ## Datas & Recursos
 
+`2023-05-17` Personalizar admin & template tags
+
 `2023-05-10` Adição de usuários
 
 `2023-04-26` Comentários
@@ -15,6 +17,14 @@
 `2023-04-01` Adicionar herança de template
 
 `2023-03-29` Instalar dependências e iniciar
+
+## 2023-05-17
+
+### Admin & Template Tags
+
+![screen](/readme/admin.png)
+
+![screen](/readme/templatetags.png)
 
 ## 2023-05-10
 

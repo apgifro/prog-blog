@@ -1,0 +1,18 @@
+
+<div id="ultimos-artigos" class="container">
+        <div class="mbr-section-head ">
+            <p class="align-center"></p>
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                <strong>Últimos artigos</strong></h3>
+            <br>
+            <ol>
+                {% for post in ultimos %}
+                <li >
+                    <a href="{% url 'detail' post.slug %}">{{ post.titulo }}</a>
+
+                </li>
+                {% endfor %}
+
+            </ol>
+        </div>
+</div>

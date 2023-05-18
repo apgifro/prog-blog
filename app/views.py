@@ -75,6 +75,7 @@ class ComentarioCreateView(LoginRequiredMixin, CreateView):
     template_name = 'blog/post/comentarios.html'
     form_class = ComentModelForm
     # form_class = forms.ModelForm(model=Comentario, fields=[])
+    # login_url = 'loginuser'
 
     def _get_post(self, id_post):
         try:

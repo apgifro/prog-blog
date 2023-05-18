@@ -1,6 +1,9 @@
 {% load static %}
+{% load blog_tags %}
 
 <br>
+<p class="row justify-content-center">{% total_posts %} posts.</p>
+
 {% include 'blog/base/pages.html' with page=page_obj %}
 <br>
 

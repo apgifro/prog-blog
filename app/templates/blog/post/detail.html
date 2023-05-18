@@ -1,5 +1,6 @@
 {% extends 'blog/base/base.html' %}
 {% load static %}
+{% load blog_tags %}
 
 {% block conteudo %}
 
@@ -105,6 +106,10 @@
 </section>
 
 {% endfor %}
+
+<br>
+
+{% mostrar_ultimos_posts 6%}
 
 <script>document.getElementById("change_text").textContent="Confira o artigo na íntegra!";</script>
 
