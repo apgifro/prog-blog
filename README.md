@@ -5,7 +5,7 @@
 
 ## Datas & Recursos
 
-`2023-05-17` Personalizar admin & template tags
+`2023-05-17` Personalizar admin, template tags e deploy
 
 `2023-05-10` Adição de usuários
 
